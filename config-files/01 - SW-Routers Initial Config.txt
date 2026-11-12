@@ -1,0 +1,46 @@
+enable
+configure terminal
+no ip domain-lookup
+hostname {{device}}
+enable secret cisco
+line console 0
+password cisco
+login
+exec-timeout 3 0
+logging synchronous
+exit
+ip domain-name ad.runa.com
+crypto key generate rsa general-keys modulus 1024
+username admin privilege 15 secret {{Password}}
+ip ssh version 2
+line vty 0 15
+login local
+transport input ssh
+exit
+banner motd "
+ ______ _     _ __   _ _______      _______  ______       
+ |_____/ |     | | \  | |_____|      |______ |_____/ |     
+ |    \_ |_____| |  \_| |     |      ______| |    \_ |_____
+
+===============================================================================
+                       RESTRICTED NETWORK ACCESS
+===============================================================================
+  - AUTHORIZED PERSONNEL ONLY
+  - ALL CONNECTIONS & COMMANDS ARE MONITORED AND LOGGED
+  - DISCONNECT IMMEDIATELY IF YOU ARE NOT AUTHORIZED TO ACCESS THIS DEVICE
+===============================================================================
+" 
+service password-encryption
+access-list 1 permit 10.10.50.0 0.0.0.127
+access-list 1 permit 10.20.50.0 0.0.0.127
+access-list 1 permit 10.30.50.0 0.0.0.127
+access-list 1 deny any
+aaa new-model
+aaa authentication login IPCISCOAUTH group tacacs+ local
+tacacs-server host 10.10.200.6 key {Tacacs-Key}
+line vty 0 15
+login authentication IPCISCOAUTH
+access-class 1 in
+exit
+exit
+copy running-config startup-config
