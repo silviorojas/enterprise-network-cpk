@@ -1,0 +1,101 @@
+WLC GUI configuration:
+
+{user}
+{Password}
+
+---------------------------------------------------------------------
+
+PP-WLC
+AR
+TIMEZONE: BS AS
+NTP Server: ntp01.runa.com
+management ip address: 10.10.242.10
+255.255.255.0
+10.10.242.1
+management vlan id:0
+
+Employee network:
+ssid: CORP-WIFI
+passphrase: {Password}
+vlan ip address: 10.10.208.10
+vlan subnet mask:255.255.252.0
+vlan default gateway:10.10.208.1
+vlan id:208
+dhcp server address: 10.10.200.4
+
+Guest network:
+ssid: GUEST-WIFI
+vlan ip address:10.10.216.10
+vlan subnet mask:255.255.252.0
+vlan default gateway:10.10.216.1
+vlan id:216
+dhcp server address: 10.10.242.10
+
+rf parameter optimization: next
+
+Then accesing to https://10.10.242.10
+
+Interfaces: 
+new ->
+Interface name:CORP-INTERFACE
+vlan id:208
+port number:1
+vlan identifier:208
+ip address:10.10.208.10
+netmask:255.255.252.0
+gateway::10.10.208.1
+primary dhcp server:10.10.200.4
+
+new ->
+Interface name:GUEST-INTERFACE
+vlan id:216
+port number:1
+vlan identifier:216
+ip address:10.10.216.10
+netmask:255.255.252.0
+gateway:10.10.216.1
+primary dhcp server: 10.10.242.10
+
+---------------------------------------------------------------------
+
+WLANs->
+CORP-WIFI
+Interface: from management to CORP-INTERFACE
+Advanced: FlexConnect Local Switching: Enabled <- important
+
+New WLAN:
+Profile name: GUEST-WIFI
+SSID: GUEST-WIFI
+Enabled
+GUEST-INTERFACE
+No security
+Advanced: FlexConnect Local Switching: Enabled <- important
+
+---------------------------------------------------------------------
+WLANs: AP Groups: New AP Group
+AP Group name: PP_F1
+Description: Floor 1
+WLANs in PP_F1 Group: GUEST-WIFI and CORP-WIFI
+APs:PP-AP-F1-1, PP-AP-F1-2
+
+AP Group name: PP_F2
+Description: Floor 2
+WLANs in PP_F2 Group: GUEST-WIFI and CORP-WIFI
+APs: PP-AP-F2-1, PP-AP-F2-2
+
+AP Group name: PP_F3
+Description: Floor 3
+WLANs in PP_F3 Group: GUEST-WIFI and CORP-WIFI
+APs: PP-AP-F3-1
+
+---------------------------------------------------------------------
+
+DHCP Server in WLC for GUEST-WIFI:
+Scope name: GUEST-WIFI-Pool
+Pool start address: 10.10.216.20
+Pool end address: 10.10.219.250
+Netmask: 255.255.252.0
+Default routers: 10.10.216.1
+DNS Servers: 8.8.8.8
+
+---------------------------------------------------------------------

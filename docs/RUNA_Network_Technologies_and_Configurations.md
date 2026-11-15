@@ -14,13 +14,14 @@
 |---|---|---|---|
 | Network devices (console) | n/a | `cisco` | Local |
 | Network devices (SSH) | `admin` | `Runa-Lab-2026!` | Local fallback if the TACACS+ server is unreachable |
-| Privileged mode (`enable`) | n/a | `cisco` | Same on all switches |
+| Privileged mode (`enable`) | n/a | `cisco` | Same on all switches, routers and firewall |
 | TACACS+ server (AAA) | `silvio.rojas` | `Runa-Lab-2026!` | Server at 10.10.200.6 |
 | TACACS+ shared key | n/a | `{View on Packet Tracer}` | Configured on the switches |
 | WLC web interface | `admin` | `Runa-Lab-2026!` | `https://10.10.242.10 or https://wlc.runa.com` |
 | CORP-WIFI | n/a | `Runa-Lab-2026!` | WPA2-PSK |
 | GUEST-WIFI | n/a | n/a | Open network, isolated on VLAN 216 |
-| Voice Gateway | `silvio.rojas` | `Runa-Lab-2026!` | Configured on the Voice Gateway |
+| Voice Gateway (Console) | n/a | `Runa-Lab-2026!` | Configured on the Voice Gateway |
+| Voice Gateway (SSH) | `silvio.rojas` | `Runa-Lab-2026!` | Configured on the Voice Gateway |
 
 ### How to Access the Devices
 
