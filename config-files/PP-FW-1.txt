@@ -1,0 +1,251 @@
+PP-FW-1#show running-config 
+ASA Version 9.6(1)
+!
+hostname PP-FW-1
+domain-name ad.runa.com
+enable password {{Password}} encrypted
+names
+!
+interface GigabitEthernet1/1
+ nameif OUTSIDE1
+ security-level 0
+ ip address 190.16.89.2 255.255.255.252
+!
+interface GigabitEthernet1/2
+ nameif OUTSIDE2
+ security-level 0
+ ip address 181.24.50.6 255.255.255.252
+!
+interface GigabitEthernet1/3
+ nameif INSIDE1
+ security-level 100
+ ip address 10.10.254.1 255.255.255.252
+ ospf cost 10
+!
+interface GigabitEthernet1/4
+ nameif INSIDE2
+ security-level 100
+ ip address 10.10.254.5 255.255.255.252
+ ospf cost 100
+!
+interface GigabitEthernet1/5
+ nameif DMZ
+ security-level 50
+ ip address 10.10.201.1 255.255.255.224
+!
+interface GigabitEthernet1/6
+ nameif GUEST
+ security-level 10
+ ip address 10.10.216.1 255.255.252.0
+!
+interface GigabitEthernet1/7
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/8
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface Management1/1
+ management-only
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+object network PP-CONSULTING-IN1-OUT1
+ subnet 10.10.11.0 255.255.255.0
+ nat (INSIDE1,OUTSIDE1) dynamic interface
+object network PP-CONSULTING-IN1-OUT2
+ subnet 10.10.11.0 255.255.255.0
+ nat (INSIDE1,OUTSIDE2) dynamic interface
+object network PP-CONSULTING-IN2-OUT1
+ subnet 10.10.11.0 255.255.255.0
+ nat (INSIDE2,OUTSIDE1) dynamic interface
+object network PP-CONSULTING-IN2-OUT2
+ subnet 10.10.11.0 255.255.255.0
+ nat (INSIDE2,OUTSIDE2) dynamic interface
+object network PP-CORP-ADMIN-IN1-OUT1
+ subnet 10.10.10.0 255.255.255.0
+ nat (INSIDE1,OUTSIDE1) dynamic interface
+object network PP-CORP-ADMIN-IN1-OUT2
+ subnet 10.10.10.0 255.255.255.0
+ nat (INSIDE1,OUTSIDE2) dynamic interface
+object network PP-CORP-ADMIN-IN2-OUT1
+ subnet 10.10.10.0 255.255.255.0
+ nat (INSIDE2,OUTSIDE1) dynamic interface
+object network PP-CORP-ADMIN-IN2-OUT2
+ subnet 10.10.10.0 255.255.255.0
+ nat (INSIDE2,OUTSIDE2) dynamic interface
+object network PP-CORP-WIFI-IN1-OUT1
+ subnet 10.10.208.0 255.255.252.0
+ nat (INSIDE1,OUTSIDE1) dynamic interface
+object network PP-CORP-WIFI-IN1-OUT2
+ subnet 10.10.208.0 255.255.252.0
+ nat (INSIDE1,OUTSIDE2) dynamic interface
+object network PP-CORP-WIFI-IN2-OUT1
+ subnet 10.10.208.0 255.255.252.0
+ nat (INSIDE2,OUTSIDE1) dynamic interface
+object network PP-CORP-WIFI-IN2-OUT2
+ subnet 10.10.208.0 255.255.252.0
+ nat (INSIDE2,OUTSIDE2) dynamic interface
+object network PP-CUSTOMER-S-IN1-OUT1
+ subnet 10.10.12.0 255.255.255.0
+ nat (INSIDE1,OUTSIDE1) dynamic interface
+object network PP-CUSTOMER-S-IN1-OUT2
+ subnet 10.10.12.0 255.255.255.0
+ nat (INSIDE1,OUTSIDE2) dynamic interface
+object network PP-CUSTOMER-S-IN2-OUT1
+ subnet 10.10.12.0 255.255.255.0
+ nat (INSIDE2,OUTSIDE1) dynamic interface
+object network PP-CUSTOMER-S-IN2-OUT2
+ subnet 10.10.12.0 255.255.255.0
+ nat (INSIDE2,OUTSIDE2) dynamic interface
+object network PP-DEV-IN1-OUT1
+ subnet 10.10.14.0 255.255.255.0
+ nat (INSIDE1,OUTSIDE1) dynamic interface
+object network PP-DEV-IN1-OUT2
+ subnet 10.10.14.0 255.255.255.0
+ nat (INSIDE1,OUTSIDE2) dynamic interface
+object network PP-DEV-IN2-OUT1
+ subnet 10.10.14.0 255.255.255.0
+ nat (INSIDE2,OUTSIDE1) dynamic interface
+object network PP-DEV-IN2-OUT2
+ subnet 10.10.14.0 255.255.255.0
+ nat (INSIDE2,OUTSIDE2) dynamic interface
+object network PP-DMZ-OUT1
+ subnet 10.10.201.0 255.255.255.224
+ nat (DMZ,OUTSIDE1) dynamic interface
+object network PP-DMZ-OUT2
+ subnet 10.10.201.0 255.255.255.224
+ nat (DMZ,OUTSIDE2) dynamic interface
+object network PP-EXEC-MGMT-IN1-OUT1
+ subnet 10.10.13.0 255.255.255.0
+ nat (INSIDE1,OUTSIDE1) dynamic interface
+object network PP-EXEC-MGMT-IN1-OUT2
+ subnet 10.10.13.0 255.255.255.0
+ nat (INSIDE1,OUTSIDE2) dynamic interface
+object network PP-EXEC-MGMT-IN2-OUT1
+ subnet 10.10.13.0 255.255.255.0
+ nat (INSIDE2,OUTSIDE1) dynamic interface
+object network PP-EXEC-MGMT-IN2-OUT2
+ subnet 10.10.13.0 255.255.255.0
+ nat (INSIDE2,OUTSIDE2) dynamic interface
+object network PP-GUEST-OUT1
+ subnet 10.10.216.0 255.255.252.0
+ nat (GUEST,OUTSIDE1) dynamic interface
+object network PP-GUEST-OUT2
+ subnet 10.10.216.0 255.255.252.0
+ nat (GUEST,OUTSIDE2) dynamic interface
+object network PP-IT-INFRA-IN1-OUT1
+ subnet 10.10.50.0 255.255.255.128
+ nat (INSIDE1,OUTSIDE1) dynamic interface
+object network PP-IT-INFRA-IN1-OUT2
+ subnet 10.10.50.0 255.255.255.128
+ nat (INSIDE1,OUTSIDE2) dynamic interface
+object network PP-IT-INFRA-IN2-OUT1
+ subnet 10.10.50.0 255.255.255.128
+ nat (INSIDE2,OUTSIDE1) dynamic interface
+object network PP-IT-INFRA-IN2-OUT2
+ subnet 10.10.50.0 255.255.255.128
+ nat (INSIDE2,OUTSIDE2) dynamic interface
+object network PP-NOC-IN1-OUT1
+ subnet 10.10.60.0 255.255.255.128
+ nat (INSIDE1,OUTSIDE1) dynamic interface
+object network PP-NOC-IN1-OUT2
+ subnet 10.10.60.0 255.255.255.128
+ nat (INSIDE1,OUTSIDE2) dynamic interface
+object network PP-NOC-IN2-OUT1
+ subnet 10.10.60.0 255.255.255.128
+ nat (INSIDE2,OUTSIDE1) dynamic interface
+object network PP-NOC-IN2-OUT2
+ subnet 10.10.60.0 255.255.255.128
+ nat (INSIDE2,OUTSIDE2) dynamic interface
+object network PP-SALES-IN1-OUT1
+ subnet 10.10.15.0 255.255.255.0
+ nat (INSIDE1,OUTSIDE1) dynamic interface
+object network PP-SALES-IN1-OUT2
+ subnet 10.10.15.0 255.255.255.0
+ nat (INSIDE1,OUTSIDE2) dynamic interface
+object network PP-SALES-IN2-OUT1
+ subnet 10.10.15.0 255.255.255.0
+ nat (INSIDE2,OUTSIDE1) dynamic interface
+object network PP-SALES-IN2-OUT2
+ subnet 10.10.15.0 255.255.255.0
+ nat (INSIDE2,OUTSIDE2) dynamic interface
+object network PP-SOC-IN1-OUT1
+ subnet 10.10.70.0 255.255.255.128
+ nat (INSIDE1,OUTSIDE1) dynamic interface
+object network PP-SOC-IN1-OUT2
+ subnet 10.10.70.0 255.255.255.128
+ nat (INSIDE1,OUTSIDE2) dynamic interface
+object network PP-SOC-IN2-OUT1
+ subnet 10.10.70.0 255.255.255.128
+ nat (INSIDE2,OUTSIDE1) dynamic interface
+object network PP-SOC-IN2-OUT2
+ subnet 10.10.70.0 255.255.255.128
+ nat (INSIDE2,OUTSIDE2) dynamic interface
+object network SRV-DMZ-NAS
+ host 10.10.201.13
+ nat (DMZ,OUTSIDE2) static 181.24.50.9
+object network SRV-DMZ-WEB01
+ host 10.10.201.11
+ nat (DMZ,OUTSIDE1) static 190.16.89.9
+!
+route OUTSIDE1 0.0.0.0 0.0.0.0 190.16.89.1 1
+route OUTSIDE2 0.0.0.0 0.0.0.0 181.24.50.5 70
+!
+access-list GUEST_IN extended deny ip 10.10.216.0 255.255.252.0 10.0.0.0 255.0.0.0
+access-list GUEST_IN extended deny ip 10.10.216.0 255.255.252.0 172.16.0.0 255.240.0.0
+access-list GUEST_IN extended deny ip 10.10.216.0 255.255.252.0 192.168.0.0 255.255.0.0
+access-list GUEST_IN extended permit ip 10.10.216.0 255.255.252.0 any
+access-list OUTSIDE1_IN extended permit tcp any host 10.10.201.11 eq www
+access-list OUTSIDE1_IN extended permit tcp any host 10.10.201.11 eq 443
+access-list OUTSIDE2_IN extended permit tcp any host 10.10.201.13 eq 443
+access-list OUTSIDE2_IN extended permit tcp any host 10.10.201.13 eq www
+!
+!
+access-group OUTSIDE1_IN in interface OUTSIDE1
+access-group OUTSIDE2_IN in interface OUTSIDE2
+aaa authentication ssh console LOCAL
+!
+username admin password {{Password}} encrypted
+!
+class-map inspection_default
+ match default-inspection-traffic
+!
+policy-map type inspect dns preset_dns_map
+ parameters
+  message-length maximum 512
+policy-map global_policy
+ class inspection_default
+  inspect dns 
+  inspect ftp 
+  inspect http 
+  inspect icmp 
+  inspect tftp 
+!
+service-policy global_policy global
+!
+telnet timeout 5
+ssh 10.10.50.0 255.255.255.128 INSIDE1
+ssh 10.10.50.0 255.255.255.128 INSIDE2
+ssh 10.10.60.0 255.255.255.128 INSIDE1
+ssh 10.10.60.0 255.255.255.128 INSIDE2
+ssh 10.10.70.0 255.255.255.128 INSIDE1
+ssh 10.10.70.0 255.255.255.128 INSIDE2
+ssh timeout 5
+!
+!
+!
+!
+router ospf 35
+ router-id 1.1.8.8
+ log-adjacency-changes
+ network 10.10.254.0 255.255.255.252 area 0
+ network 10.10.254.4 255.255.255.252 area 0
+!

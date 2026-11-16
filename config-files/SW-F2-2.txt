@@ -1,0 +1,331 @@
+SW-F2-2#show running-config 
+Building configuration...
+
+Current configuration : 6667 bytes
+!
+version 15.0
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname SW-F2-2
+!
+enable secret 5 {{Password}}
+!
+!
+!
+!
+!
+aaa new-model
+!
+aaa authentication login IPCISCOAUTH group tacacs+ local 
+!
+!
+!
+!
+ip ssh version 2
+no ip domain-lookup
+ip domain-name ad.runa.com
+!
+username admin secret 5 {{Password}}
+!
+vtp mode transparent
+!
+!
+ip dhcp snooping vlan 216
+no ip dhcp snooping information option
+ip dhcp snooping
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan 10
+ name CORP-ADMIN
+!
+vlan 11
+ name CONSULTING
+!
+vlan 12
+ name CUSTOMER-SUPPORT
+!
+vlan 13
+ name EXEC-MGMT
+!
+vlan 14
+ name DEV-ENGINEERING
+!
+vlan 15
+ name SALES
+!
+vlan 50
+ name IT-INFRA
+!
+vlan 60
+ name NOC
+!
+vlan 70
+ name SOC
+!
+vlan 200
+ name INTERNAL-SERVERS
+!
+vlan 208
+ name CORP-WIFI
+!
+vlan 216
+ name GUEST-WIFI
+!
+vlan 240
+ name VOIP
+!
+vlan 242
+ name WIFI-MGMT
+!
+vlan 500
+ name NETWORK-MGMT
+!
+vlan 2000
+ name BLACKHOLE
+!
+interface FastEthernet0/1
+ switchport access vlan 14
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/2
+ switchport access vlan 14
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/3
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ switchport voice vlan 240
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/4
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ switchport voice vlan 240
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/5
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/6
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/7
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/8
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/9
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/10
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/11
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/12
+ switchport trunk native vlan 242
+ switchport trunk allowed vlan 208,216,242
+ ip dhcp snooping limit rate 100
+ switchport mode trunk
+!
+interface FastEthernet0/13
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/14
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/15
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/16
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/17
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/18
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/19
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/20
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/21
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/22
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/23
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface FastEthernet0/24
+ switchport access vlan 2000
+ ip dhcp snooping limit rate 15
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ shutdown
+!
+interface GigabitEthernet0/1
+ ip dhcp snooping trust
+ switchport mode trunk
+!
+interface GigabitEthernet0/2
+ ip dhcp snooping trust
+ switchport mode trunk
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan500
+ ip address 10.10.0.13 255.255.255.0
+!
+ip default-gateway 10.10.0.1
+!
+banner motd ^C
+ ______ _     _ __   _ _______      _______  ______       
+ |_____/ |     | | \  | |_____|      |______ |_____/ |     
+ |    \_ |_____| |  \_| |     |      ______| |    \_ |_____
+
+===============================================================================
+                       RESTRICTED NETWORK ACCESS
+===============================================================================
+  - AUTHORIZED PERSONNEL ONLY
+  - ALL CONNECTIONS & COMMANDS ARE MONITORED AND LOGGED
+  - DISCONNECT IMMEDIATELY IF YOU ARE NOT AUTHORIZED TO ACCESS THIS DEVICE
+===============================================================================
+^C
+tacacs-server host 10.10.200.6 key {{Tacacs-Key}}
+!
+!
+!
+access-list 1 permit 10.10.50.0 0.0.0.127
+access-list 1 permit 10.10.60.0 0.0.0.127
+access-list 1 permit 10.10.70.0 0.0.0.127
+access-list 1 deny any
+line con 0
+ password 7 {{Password}}
+ logging synchronous
+ exec-timeout 3 0
+!
+line vty 0 4
+ access-class 1 in
+ login authentication IPCISCOAUTH
+ transport input ssh
+line vty 5 15
+ access-class 1 in
+ login authentication IPCISCOAUTH
+ transport input ssh
+!
+!
+!
+!
+end

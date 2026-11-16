@@ -27,3 +27,4 @@
 | 10.10.254.0/30 | n/a | INSIDE | CORE-SW-1 to FIREWALL-1 |
 | 10.10.254.4/30 | n/a | INSIDE | CORE-SW-2 to FIREWALL-1 |
 
+**The public IP addresses are for illustrative purposes only and do not correspond to any real infrastructure.**

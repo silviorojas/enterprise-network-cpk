@@ -1,6 +1,6 @@
 # Network Technologies & Configurations
 
-**Project:** RUNA S.R.L. Enterprise Network Design
+**Project:** RUNA S.R.L. Enterprise Network Architecture
 
 ---
 
@@ -16,8 +16,8 @@
 | Network devices (SSH) | `admin` | `Runa-Lab-2026!` | Local fallback if the TACACS+ server is unreachable |
 | Privileged mode (`enable`) | n/a | `cisco` | Same on all switches, routers and firewall |
 | TACACS+ server (AAA) | `silvio.rojas` | `Runa-Lab-2026!` | Server at 10.10.200.6 |
-| TACACS+ shared key | n/a | `{View on Packet Tracer}` | Configured on the switches |
-| WLC web interface | `admin` | `Runa-Lab-2026!` | `https://10.10.242.10 or https://wlc.runa.com` |
+| TACACS+ shared key | n/a | `{{View on Packet Tracer}}` | Configured on the switches |
+| WLC web interface | `admin` | `Runa-Lab-2026!` | `https://10.10.242.10 or https://wlc.example.com` |
 | CORP-WIFI | n/a | `Runa-Lab-2026!` | WPA2-PSK |
 | GUEST-WIFI | n/a | n/a | Open network, isolated on VLAN 216 |
 | Voice Gateway (Console) | n/a | `Runa-Lab-2026!` | Configured on the Voice Gateway |
@@ -27,7 +27,8 @@
 
 - **Console:** available on every device from the Packet Tracer CLI tab. This is the quickest way to inspect a configuration.
 - **SSH to switches:** VTY lines accept SSH v2 only and are restricted by ACL to the IT-Infra (`10.10.50.0/25`), NOC (`10.10.60.0/25`) and SOC (`10.10.70.0/25`) subnets.
-- **WLC:** from a PC open `https://10.10.242.10` or `https://wlc.runa.com` in the browser (only works with HTTPS).
+- **WLC:** from a PC open `https://10.10.242.10` or `https://wlc.example.com` in the browser (only works with HTTPS).
+- **WLC:** for `https://wlc.example.com` change "example" for the company name of this project.
 
 ---
 

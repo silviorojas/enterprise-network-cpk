@@ -2,14 +2,14 @@ enable
 configure terminal
 no ip domain-lookup
 hostname {{device}}
-enable secret cisco
+enable secret {{Password}}
 line console 0
-password cisco
+password {{Password}}
 login
 exec-timeout 3 0
 logging synchronous
 exit
-ip domain-name ad.runa.com
+ip domain-name ad.example.com
 crypto key generate rsa general-keys modulus 1024
 username admin privilege 15 secret {{Password}}
 ip ssh version 2
@@ -34,10 +34,16 @@ service password-encryption
 access-list 1 permit 10.10.50.0 0.0.0.127
 access-list 1 permit 10.20.50.0 0.0.0.127
 access-list 1 permit 10.30.50.0 0.0.0.127
+access-list 1 permit 10.10.60.0 0.0.0.127
+access-list 1 permit 10.20.60.0 0.0.0.127
+access-list 1 permit 10.30.60.0 0.0.0.127
+access-list 1 permit 10.10.70.0 0.0.0.127
+access-list 1 permit 10.20.70.0 0.0.0.127
+access-list 1 permit 10.30.70.0 0.0.0.127
 access-list 1 deny any
 aaa new-model
 aaa authentication login IPCISCOAUTH group tacacs+ local
-tacacs-server host 10.10.200.6 key {Tacacs-Key}
+tacacs-server host 10.10.200.6 key {{Tacacs-Key}}
 line vty 0 15
 login authentication IPCISCOAUTH
 access-class 1 in

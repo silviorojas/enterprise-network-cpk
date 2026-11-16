@@ -1,0 +1,329 @@
+PP-VGW-1#show running-config 
+Building configuration...
+
+Current configuration : 4476 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname PP-VGW-1
+!
+!
+!
+enable secret 5 {{Password}}
+!
+!
+!
+ip dhcp pool PP-VOIP-POOL
+ network 10.10.240.0 255.255.254.0
+ default-router 10.10.240.1
+ option 150 ip 10.10.240.1
+!
+!
+aaa new-model
+!
+aaa authentication login IPCISCOAUTH group tacacs+ local 
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+username admin privilege 15 secret 5 {{Password}}
+!
+!
+license udi pid CISCO2811/K9 sn {{SN}}
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip ssh version 2
+no ip domain-lookup
+ip domain-name ad.runa.com
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0.240
+ encapsulation dot1Q 240
+ ip address 10.10.240.1 255.255.254.0
+!
+interface FastEthernet0/0.500
+ encapsulation dot1Q 500
+ ip address 10.10.0.6 255.255.255.0
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 10.10.0.1 
+!
+ip flow-export version 9
+!
+!
+access-list 1 permit 10.10.50.0 0.0.0.127
+access-list 1 permit 10.10.60.0 0.0.0.127
+access-list 1 permit 10.10.70.0 0.0.0.127
+access-list 1 deny any
+!
+banner motd ^C
+ ______ _     _ __   _ _______      _______  ______       
+ |_____/ |     | | \  | |_____|      |______ |_____/ |     
+ |    \_ |_____| |  \_| |     |      ______| |    \_ |_____
+
+===============================================================================
+                       RESTRICTED NETWORK ACCESS
+===============================================================================
+  - AUTHORIZED PERSONNEL ONLY
+  - ALL CONNECTIONS & COMMANDS ARE MONITORED AND LOGGED
+  - DISCONNECT IMMEDIATELY IF YOU ARE NOT AUTHORIZED TO ACCESS THIS DEVICE
+===============================================================================
+^C
+!
+tacacs-server host 10.10.200.6 key {{Tacacs-Key}}
+!
+!
+!
+telephony-service
+ max-ephones 42
+ max-dn 140
+ ip source-address 10.10.240.1 port 2000
+ auto assign 1 to 140
+!
+ephone-dn 1
+ number 1001
+!
+ephone-dn 2
+ number 1002
+!
+ephone-dn 3
+ number 1003
+!
+ephone-dn 4
+ number 1004
+!
+ephone-dn 5
+ number 1005
+!
+ephone-dn 6
+ number 1006
+!
+ephone-dn 7
+ number 1007
+!
+ephone-dn 8
+ number 1008
+!
+ephone-dn 9
+ number 1009
+!
+ephone-dn 10
+ number 1010
+!
+ephone-dn 11
+ number 1011
+!
+ephone-dn 12
+ number 1012
+!
+ephone-dn 13
+ number 1013
+!
+ephone-dn 14
+ number 1014
+!
+ephone-dn 15
+ number 1015
+!
+ephone-dn 16
+ number 1016
+!
+ephone-dn 17
+ number 1017
+!
+ephone-dn 18
+ number 1018
+!
+ephone-dn 19
+ number 1019
+!
+ephone-dn 20
+ number 1020
+!
+ephone-dn 21
+ number 1021
+!
+ephone-dn 22
+ number 1022
+!
+ephone-dn 23
+ number 1023
+!
+ephone-dn 24
+ number 1024
+!
+ephone-dn 25
+ number 1025
+!
+ephone-dn 26
+ number 1026
+!
+ephone-dn 27
+ number 1027
+!
+ephone-dn 28
+ number 1028
+!
+ephone-dn 29
+ number 1029
+!
+ephone-dn 30
+ number 1030
+!
+ephone-dn 31
+ number 1031
+!
+ephone-dn 32
+ number 1032
+!
+ephone-dn 33
+ number 1033
+!
+ephone-dn 34
+ number 1034
+!
+ephone-dn 35
+ number 1035
+!
+ephone-dn 36
+ number 1036
+!
+ephone-dn 37
+ number 1037
+!
+ephone-dn 38
+ number 1038
+!
+ephone-dn 39
+ number 1039
+!
+ephone-dn 40
+ number 1040
+!
+ephone-dn 41
+ number 1041
+!
+ephone-dn 42
+ number 1042
+!
+ephone 1
+ device-security-mode none
+ mac-address 0060.2F70.7A7C
+ type 7960
+ button 1:1
+!
+ephone 2
+ device-security-mode none
+ mac-address 0005.5E0E.EC4B
+ type 7960
+ button 1:2
+!
+ephone 3
+ device-security-mode none
+ mac-address 000C.CF2B.0D92
+ type 7960
+ button 1:3
+!
+ephone 4
+ device-security-mode none
+ mac-address 0060.2F3E.7517
+ type 7960
+ button 1:4
+!
+ephone 5
+ device-security-mode none
+ mac-address 0060.3EA8.EA7D
+ type 7960
+ button 1:5
+!
+ephone 6
+ device-security-mode none
+ mac-address 0060.2FC2.4D34
+ type 7960
+ button 1:6
+!
+ephone 7
+ device-security-mode none
+ mac-address 0001.648B.99EA
+ type 7960
+ button 1:7
+!
+ephone 8
+ device-security-mode none
+ mac-address 0002.4AC7.87A9
+ type 7960
+ button 1:8
+!
+ephone 9
+ device-security-mode none
+ mac-address 00D0.D360.2CD9
+ type 7960
+ button 1:9
+!
+ephone 10
+ device-security-mode none
+ mac-address 00E0.A337.B206
+ type 7960
+ button 1:10
+!
+line con 0
+ exec-timeout 3 0
+ password 7 {{Password}}
+ logging synchronous
+!
+line aux 0
+!
+line vty 0 4
+ access-class 1 in
+ login authentication IPCISCOAUTH
+ transport input ssh
+line vty 5 15
+ access-class 1 in
+ login authentication IPCISCOAUTH
+ transport input ssh
+!
+!
+!
+end

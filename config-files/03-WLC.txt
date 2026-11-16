@@ -1,14 +1,14 @@
 WLC GUI configuration:
 
-{user}
-{Password}
+{{user}}
+{{Password}}
 
 ---------------------------------------------------------------------
 
 PP-WLC
 AR
 TIMEZONE: BS AS
-NTP Server: ntp01.runa.com
+NTP Server: ntp01.example.com
 management ip address: 10.10.242.10
 255.255.255.0
 10.10.242.1
@@ -16,7 +16,7 @@ management vlan id:0
 
 Employee network:
 ssid: CORP-WIFI
-passphrase: {Password}
+passphrase: {{Password}}
 vlan ip address: 10.10.208.10
 vlan subnet mask:255.255.252.0
 vlan default gateway:10.10.208.1

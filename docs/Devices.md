@@ -27,6 +27,7 @@ Portfolio project: Enterprise Network Architecture (v1.0, november 2026).
 | TELEFÓNICA-ISP | Cisco 2911 | ISP 2 Router | 181.24.50.5/30 |
 | INTERNET / CLOUD | Cisco 2911 | Simulate the Internet | 8.0.0.1/8 |
 
+**The public IP addresses are for illustrative purposes only and do not correspond to any real infrastructure.**
 
 ## Access Switches (Cisco 2960-24TT)
 
